@@ -6,45 +6,57 @@ _Replace italicized text (including this text!) with details of the design you a
 
 _You should take a look at the [example design document](example-design-document.md) in the same folder as this template for more guidance on the types of information to capture, and the level of detail to aim for._
 
-## _Project Title_ Design
+## TheCookBook Design
 
 ## 1. Problem Statement
 
-_Explain clearly what problem you are trying to solve._
+I as an user want an app that can be used to search and find recipes for both food and drinks. I want the option to search with multiple option or view all and be presented with the multiple recipes and multiple pieces of information about them such as the creator, the ingredients, estimated time to complete, some sort of rating(s), food item name, recipe title, food category, and a list of description tags. I should then be able to open or view a specific recipe and get the same information but also the uploader, a description about what is being made, and a list of instruction steps to make whatever you are making.
 
 ## 2. Top Questions to Resolve in Review
 
 _List the most important questions you have about your design, or things that you are still debating internally that you might like help working through._
 
-1.
-2.
-3.
+1. Best way to search inputting a keyword without specifing which table attribute it is referencing
+2. How much can I switch from string to enum without causing issues or manually inserted hundreds or thousands of enums
+3. How can I store and display and image relating to a specific recipe from the table
 
 ## 3. Use Cases
 
-_This is where we work backwards from the customer and define what our customers would like to do (and why). You may also include use cases for yourselves (as developers), or for the organization providing the product to customers._
+U1. As a TheCookBook customer, I want to be able to upload/create a food recipe 
 
-U1. _As a [product] customer, I want to `<result>` when I `<action>`_
+U2. As a TheCookBook customer, I want to be able to upload/create a drink recipe
 
-U2. _As a [product] customer, I want to view my grocery list when I log into the grocery list page_
+U3. As a TheCookBook customer, I want to be able to “open up” and view a food recipe in further detail
 
-U3. ...
+U4. As a TheCookBook customer, I want to be able to “open up” and view a drink recipe in further detail
+
+U5. As a TheCookBook customer, I want to be able to rate a food recipe good, alright, or bad and display all ratings
+
+U6. As a TheCookBook customer, I want to be able to rate a drink recipe good, alright, or bad and display all ratings
+
+U7. As a TheCookBook customer, I want to be able to view all food recipes sorted by ratings 
+
+U8. As a TheCookBook customer, I want to be able to view all drink recipes sorted by ratings
+
+U9. As a TheCookBook customer, I want to search food recipes by a keyword relating to one of the recipe’s attributes such as ingredients, creator, description tags etc.
+
+U10. As a TheCookBook customer, I want to search drink recipes by a keyword relating to one of the recipe’s attributes such as ingredients, creator, description tags etc.
 
 ## 4. Project Scope
 
-_Clarify which parts of the problem you intend to solve. It helps reviewers know what questions to ask to make sure you are solving for what you say and stops discussions from getting sidetracked by aspects you do not intend to handle in your design._
-
 ### 4.1. In Scope
 
-_Which parts of the problem defined in Sections 1 and 2 will you solve with this design? This should include the base functionality of your product. What pieces are required for your product to work?_
-
-_The functionality described above should be what your design is focused on. You do not need to include the design for any out of scope features or expansions._
+Upload/Create a food or drink recipe
+View a food or drink recipe (specific recipe)
+Rate a food or drink recipe
+View all food or drink recipes
+Search for a food or drink recipe
 
 ### 4.2. Out of Scope
 
-_Based on your problem description in Sections 1 and 2, are there any aspects you are not planning to solve? Do potential expansions or related problems occur to you that you want to explicitly say you are not worrying about now? Feel free to put anything here that you think your team can't accomplish in the unit, but would love to do with more time._
-
-_The functionality here does not need to be accounted for in your design._
+Recipe images
+Food and Drink Item objects
+Enums for allergies, ingredients, description tags, and food and drink categories
 
 # 5. Proposed Architecture Overview
 
@@ -69,6 +81,33 @@ _(repeat, but you can use shorthand here, indicating what is different, likely p
 # 7. Tables
 
 _Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
+
+`FoodRecipe`
+```
+String Creator // partition key
+String recipeTitle // sort key
+List<String> Ingredients
+List<String> instructionSteps
+String Description
+List<String> DescriptionTags
+Int estimatedTimeToCompletion
+String FoodCategory
+String FoodItem
+List<String> Allergies
+```
+
+`DrinkRecipe`
+```
+String Creator // partition key
+String recipeTitle // sort key
+List<String> Ingredients
+List<String> instructionSteps
+String Description
+List<String> DescriptionTags
+String FoodCategory
+String FoodItem
+List<String> Allergies
+```
 
 # 8. Pages
 
