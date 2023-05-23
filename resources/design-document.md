@@ -57,26 +57,77 @@ Search for a food or drink recipe
 Recipe images
 Food and Drink Item objects
 Enums for allergies, ingredients, description tags, and food and drink categories
+Editing already posted recipes
+Creator verification (verifies uploader isn't taking credit for or miscrediting someone for a recipe)
 
 # 5. Proposed Architecture Overview
 
 _Describe broadly how you are proposing to solve for the requirements you described in Section 2. This may include class diagram(s) showing what components you are planning to build. You should argue why this architecture (organization of components) is reasonable. That is, why it represents a good data flow and a good separation of concerns. Where applicable, argue why this architecture satisfies the stated requirements._
 
+Class Diagram
+
 # 6. API
 
 ## 6.1. Public Models
 
-_Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
+`FoodRecipe`
+```
+String Creator
+String recipeTitle
+List<String> Ingredients
+LinkedList<String> instructionSteps
+String Description
+List<String> DescriptionTags
+Int estimatedTimeToCompletion
+String FoodCategory
+String FoodItem
+List<String> Allergies
+Map<Integer, Integer> Ratings
+```
 
-## 6.2. _First Endpoint_
+`DrinkRecipe`
+```
+String Creator
+String recipeTitle
+List<String> Ingredients
+LinkedList<String> instructionSteps
+String Description
+List<String> DescriptionTags
+String FoodCategory
+String FoodItem
+List<String> Allergies
+Map<Integer, Integer> Ratings
+```
+
+## 6.2. Get Food Recipes (All)
 
 _Describe the behavior of the first endpoint you will build into your service API. This should include what data it requires, what data it returns, and how it will handle any known failure cases. You should also include a sequence diagram showing how a user interaction goes from user to website to service to database, and back. This first endpoint can serve as a template for subsequent endpoints. (If there is a significant difference on a subsequent endpoint, review that with your team before building it!)_
 
 _(You should have a separate section for each of the endpoints you are expecting to build...)_
 
-## 6.3 _Second Endpoint_
+Sequence Diagram
+
+
+
+## 6.3 Get Food Recipe (Viewing one)
 
 _(repeat, but you can use shorthand here, indicating what is different, likely primarily the data in/out and error conditions. If the sequence diagram is nearly identical, you can say in a few words how it is the same/different from the first endpoint)_
+
+## 6.4 Get Food Recipes (Search)
+
+## 6.5 Get Drink Recipes (All)
+
+## 6.6 Get Drink Recipe (Viewing one)
+
+## 6.7 Get Drink Recipes (Search)
+
+## 6.8 Post Food Recipe (Upload/Create Recipe)
+
+## 6.9 Put Food Recipe (Rating)
+
+## 6.10 Post Drink Recipe (Upload/Create Recipe)
+
+## 6.11 Put Drink Recipe (Rating)
 
 # 7. Tables
 
@@ -94,6 +145,7 @@ Int estimatedTimeToCompletion
 String FoodCategory
 String FoodItem
 List<String> Allergies
+Map<Integer, Integer> Ratings
 ```
 
 `DrinkRecipe`
@@ -107,8 +159,11 @@ List<String> DescriptionTags
 String FoodCategory
 String FoodItem
 List<String> Allergies
+Map<Integer, Integer> Ratings
 ```
 
 # 8. Pages
 
 _Include mock-ups of the web pages you expect to build. These can be as sophisticated as mockups/wireframes using drawing software, or as simple as hand-drawn pictures that represent the key customer-facing components of the pages. It should be clear what the interactions will be on the page, especially where customers enter and submit data. You may want to accompany the mockups with some description of behaviors of the page (e.g. “When customer submits the submit-dog-photo button, the customer is sent to the doggie detail page”)_
+
+Wireframes
