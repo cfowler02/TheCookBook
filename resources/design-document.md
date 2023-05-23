@@ -107,27 +107,55 @@ _(You should have a separate section for each of the endpoints you are expecting
 
 Sequence Diagram
 
-
+    Input: 
+    Output: a list of all food recipes
 
 ## 6.3 Get Food Recipe (Viewing one)
 
 _(repeat, but you can use shorthand here, indicating what is different, likely primarily the data in/out and error conditions. If the sequence diagram is nearly identical, you can say in a few words how it is the same/different from the first endpoint)_
 
+    Input: String Creator, String recipeTitle
+    Output: a food recipe
+
 ## 6.4 Get Food Recipes (Search)
+
+    Input: String keyword
+    Output: a list of food recipes related to the search
 
 ## 6.5 Get Drink Recipes (All)
 
+    Input: 
+    Output: a list of all drink recipes
+
 ## 6.6 Get Drink Recipe (Viewing one)
+
+    Input: String Creator, String recipeTitle
+    Output: a drink recipe
 
 ## 6.7 Get Drink Recipes (Search)
 
+    Input: String keyword
+    Output: a list of drink recipes related to the search
+
 ## 6.8 Post Food Recipe (Upload/Create Recipe)
+
+    Input: String Creator, String recipeTitle, List<String> Ingredients, List<String> instructionSteps, String Description, List<String> DescriptionTags, Int estimatedTimeToCompletion, String FoodCategory, String FoodItem, List<String> Allergies
+    Output: a new food recipe
 
 ## 6.9 Put Food Recipe (Rating)
 
+    Input: String Creator, String recipeTitle, Int -1/0/1
+    Output: a updated food recipe
+
 ## 6.10 Post Drink Recipe (Upload/Create Recipe)
 
+    Input: String Creator, String recipeTitle, List<String> Ingredients, List<String> instructionSteps, String Description, List<String> DescriptionTags, String DrinkCategory, String DrinkItem, List<String> Allergies
+    Output: a new drink recipe
+
 ## 6.11 Put Drink Recipe (Rating)
+
+    Input: String Creator, String recipeTitle, Int -1/0/1
+    Output: a updated food recipe
 
 # 7. Tables
 
