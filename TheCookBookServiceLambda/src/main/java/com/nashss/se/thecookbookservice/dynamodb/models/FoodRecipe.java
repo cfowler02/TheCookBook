@@ -6,23 +6,24 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Set;
 import java.util.Map;
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "food_recipes")
 public class FoodRecipe {
 
+
     private String creator;
     private String recipeTitle;
-    private List<String> ingredients;
+    private Map<String, String> ingredients;
     private LinkedList<String> instructionSteps;
     private String description;
-    private List<String> descriptionTags;
+    private Set<String> descriptionTags;
     private int timeEstimate;
     private String foodCategory;
     private String foodItem;
-    private List<String> allergies;
+    private Set<String> allergies;
     private Map<Integer, Integer> ratings;
 
     @DynamoDBHashKey(attributeName = "creator")
@@ -44,11 +45,11 @@ public class FoodRecipe {
     }
 
     @DynamoDBAttribute(attributeName = "ingredients")
-    public List<String> getIngredients() {
+    public Map<String, String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(Map<String, String> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -71,11 +72,11 @@ public class FoodRecipe {
     }
 
     @DynamoDBAttribute(attributeName = "description_tags")
-    public List<String> getDescriptionTags() {
+    public Set<String> getDescriptionTags() {
         return descriptionTags;
     }
 
-    public void setDescriptionTags(List<String> descriptionTags) {
+    public void setDescriptionTags(Set<String> descriptionTags) {
         this.descriptionTags = descriptionTags;
     }
 
@@ -105,11 +106,11 @@ public class FoodRecipe {
         this.foodItem = foodItem;
     }
     @DynamoDBAttribute(attributeName = "allergies")
-    public List<String> getAllergies() {
+    public Set<String> getAllergies() {
         return allergies;
     }
 
-    public void setAllergies(List<String> allergies) {
+    public void setAllergies(Set<String> allergies) {
         this.allergies = allergies;
     }
 

@@ -21,12 +21,16 @@ public class FoodRecipeDao {
     public FoodRecipe getFoodRecipe(String creator, String recipe_title){
         FoodRecipe foodRecipe = this.dynamoDBMapper.load(FoodRecipe.class, creator, recipe_title);
 
-        /*if (foodRecipe == null){
-            metricsPublisher.addCount();
-            throw new
+        if (foodRecipe == null){
+            metricsPublisher.addCount(MetricsConstants.GETFOODRECIPE_FOODRECIPENOTFOUND_COUNT, 1);
+            throw new FoodRecipeNotFoundException("Could not find food recipe with creator and title " + creator + recipe_title);
         }
+        metricsPublisher.addCount(MetricsConstants.GETFOODRECIPE_FOODRECIPENOTFOUND_COUNT, 0);
+        return foodRecipe;
+    }
 
-        */
+    public FoodRecipe saveFoodRecipe(FoodRecipe foodRecipe){
+        this.dynamoDBMapper.save(foodRecipe);
         return foodRecipe;
     }
 }
