@@ -2,7 +2,11 @@ package com.nashss.se.thecookbookservice.converters;
 
 import com.nashss.se.thecookbookservice.dynamodb.models.AlbumTrack;
 import com.nashss.se.thecookbookservice.dynamodb.models.Playlist;
+import com.nashss.se.thecookbookservice.dynamodb.models.FoodRecipe;
+import com.nashss.se.thecookbookservice.dynamodb.models.DrinkRecipe;
 import com.nashss.se.thecookbookservice.models.PlaylistModel;
+import com.nashss.se.thecookbookservice.models.FoodRecipeModel;
+import com.nashss.se.thecookbookservice.models.DrinkRecipeModel;
 import com.nashss.se.thecookbookservice.models.SongModel;
 
 import java.util.ArrayList;
@@ -31,6 +35,37 @@ public class ModelConverter {
                 .withCustomerName(playlist.getCustomerName())
                 .withSongCount(playlist.getSongCount())
                 .withTags(tags)
+                .build();
+    }
+
+    public FoodRecipeModel toFoodRecipeModel(FoodRecipe foodRecipe){
+        return FoodRecipeModel.builder()
+                .withCreator(foodRecipe.getCreator())
+                .withRecipeTitle(foodRecipe.getRecipeTitle())
+                .withIngredients(foodRecipe.getIngredients())
+                .withInstructionSteps(foodRecipe.getInstructionSteps())
+                .withDescription(foodRecipe.getDescription())
+                .withDescriptionTags(foodRecipe.getDescriptionTags())
+                .withTimeEstimate(foodRecipe.getTimeEstimate())
+                .withFoodCategory(foodRecipe.getFoodCategory())
+                .withFoodItem(foodRecipe.getFoodItem())
+                .withAllergies(foodRecipe.getAllergies())
+                .withRatings(foodRecipe.getRatings())
+                .build();
+    }
+
+    public DrinkRecipeModel toDrinkRecipeModel(DrinkRecipe drinkRecipe){
+        return DrinkRecipeModel.builder()
+                .withCreator(drinkRecipe.getCreator())
+                .withRecipeTitle(drinkRecipe.getRecipeTitle())
+                .withIngredients(drinkRecipe.getIngredients())
+                .withInstructionSteps(drinkRecipe.getInstructionSteps())
+                .withDescription(drinkRecipe.getDescription())
+                .withDescriptionTags(drinkRecipe.getDescriptionTags())
+                .withFoodCategory(drinkRecipe.getFoodCategory())
+                .withFoodItem(drinkRecipe.getFoodItem())
+                .withAllergies(drinkRecipe.getAllergies())
+                .withRatings(drinkRecipe.getRatings())
                 .build();
     }
 

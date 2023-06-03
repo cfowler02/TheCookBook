@@ -40,25 +40,22 @@ public class CreateFoodRecipeActivity {
         //            "] contains illegal characters");
         //}
 
-        Set<String> playlistTags = null;
-        if (createPlaylistRequest.getTags() != null) {
-            playlistTags = new HashSet<>(createPlaylistRequest.getTags());
-        }
+        FoodRecipe newFoodRecipe = new FoodRecipe;
+        newFoodRecipe.setCreator(createFoodRecipeRequest.getCreator());
+        newFoodRecipe.setRecipeTitle(createFoodRecipeRequest.getRecipeTitle());
+        newFoodRecipe.setIngredients(createFoodRecipeRequest.getIngredients());
+        newFoodRecipe.setInstructionSteps(createFoodRecipeRequest.getInstructionSteps());
+        newFoodRecipe.setDescription(createFoodRecipeRequest.getDescription());
+        newFoodRecipe.setDescriptionTags(createFoodRecipeRequest.getDescriptionTags());
+        newFoodRecipe.setTimeEstimate(createFoodRecipeRequest.getTimeEstimate());
+        newFoodRecipe.setFoodCategory(createFoodRecipeRequest.getFoodCategory());
+        newFoodRecipe.setFoodItem(createFoodRecipeRequest.getFoodItem());
+        newFoodRecipe.setAllergies(createFoodRecipeRequest.getAllergies());
+        newFoodRecipe.setRatings(createFoodRecipeRequest.getRatings());
 
-        Playlist newPlaylist = new Playlist();
-        newPlaylist.setId(MusicPlaylistServiceUtils.generatePlaylistId());
-        newPlaylist.setName(createPlaylistRequest.getName());
-        newPlaylist.setCustomerId(createPlaylistRequest.getCustomerId());
-        newPlaylist.setCustomerName(createPlaylistRequest.getCustomerName());
-        newPlaylist.setSongCount(0);
-        newPlaylist.setTags(playlistTags);
-        newPlaylist.setSongList(new ArrayList<>());
-
-        playlistDao.savePlaylist(newPlaylist);
-
-        PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(newPlaylist);
-        return CreatePlaylistResult.builder()
-                .withPlaylist(playlistModel)
+        FoodRecipeModel foodRecipeModel = new ModelConverter().toFoodRecipeModel(newFoodRecipe);
+        return CreateFoodRecipeResult.builder()
+                .withFoodRecipe(foodRecipeModel)
                 .build();
     }
 }

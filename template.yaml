@@ -224,8 +224,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.GetPlaylistLambda::handleRequest
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetPlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -246,8 +246,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.SearchPlaylistsLambda::handleRequest
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.SearchPlaylistsLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -268,8 +268,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.GetPlaylistSongsLambda::handleRequest
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetPlaylistSongsLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -290,8 +290,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.CreatePlaylistLambda::handleRequest
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.CreatePlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -310,8 +310,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.UpdatePlaylistLambda::handleRequest
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.UpdatePlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -330,8 +330,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.AddSongToPlaylistLambda::handleRequest
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.AddSongToPlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -344,6 +344,46 @@ Resources:
           Type: Api
           Properties:
             Path: /playlists/{id}/songs
+            Method: post
+
+  CreateFoodRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.CreateFoodRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /foodRecipes
+            Method: post
+
+  CreateDrinkRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.CreateDrinkRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /drinkRecipes
             Method: post
 
   #-----------------------------------------------------

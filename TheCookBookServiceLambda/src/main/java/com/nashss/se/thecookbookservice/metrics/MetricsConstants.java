@@ -6,6 +6,7 @@ package com.nashss.se.thecookbookservice.metrics;
 public class MetricsConstants {
     public static final String GETPLAYLIST_PLAYLISTNOTFOUND_COUNT = "GetPlaylist.PlaylistNotFoundException.Count";
     public static final String GETFOODRECIPE_FOODRECIPENOTFOUND_COUNT = "GetFoodRecipe.FoodRecipeNotFoundException.Count";
+    public static final String GETDRINKRECIPE_DRINKRECIPENOTFOUND_COUNT = "GetDrinkRecipe.DrinkRecipeNotFoundException.Count";
     public static final String UPDATEPLAYLIST_INVALIDATTRIBUTEVALUE_COUNT =
         "UpdatePlaylist.InvalidAttributeValueException.Count";
     public static final String UPDATEPLAYLIST_INVALIDATTRIBUTECHANGE_COUNT =
