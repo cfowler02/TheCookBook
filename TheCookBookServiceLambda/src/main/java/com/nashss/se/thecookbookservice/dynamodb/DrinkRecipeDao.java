@@ -1,5 +1,12 @@
+package com.nashss.se.thecookbookservice.dynamodb;
+
 import com.nashss.se.thecookbookservice.dynamodb.models.DrinkRecipe;
+import com.nashss.se.thecookbookservice.metrics.MetricsConstants;
 import com.nashss.se.thecookbookservice.metrics.MetricsPublisher;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
+import com.nashss.se.thecookbookservice.exceptions.DrinkRecipeNotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,7 +27,7 @@ public class DrinkRecipeDao {
 
         if (drinkRecipe == null){
             metricsPublisher.addCount(MetricsConstants.GETDRINKRECIPE_DRINKRECIPENOTFOUND_COUNT, 1);
-            throw new FoodRecipeNotFoundException("Could not find drink recipe with creator and title " + creator + recipe_title);
+            throw new DrinkRecipeNotFoundException("Could not find drink recipe with creator and title " + creator + recipe_title);
         }
         metricsPublisher.addCount(MetricsConstants.GETDRINKRECIPE_DRINKRECIPENOTFOUND_COUNT, 0);
         return drinkRecipe;

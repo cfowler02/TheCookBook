@@ -1,8 +1,12 @@
 package com.nashss.se.thecookbookservice.dynamodb;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.thecookbookservice.dynamodb.models.FoodRecipe;
+import com.nashss.se.thecookbookservice.metrics.MetricsConstants;
 import com.nashss.se.thecookbookservice.metrics.MetricsPublisher;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
+import com.nashss.se.thecookbookservice.exceptions.FoodRecipeNotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

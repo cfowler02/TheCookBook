@@ -6,6 +6,10 @@ import com.nashss.se.thecookbookservice.activity.GetPlaylistActivity;
 import com.nashss.se.thecookbookservice.activity.GetPlaylistSongsActivity;
 import com.nashss.se.thecookbookservice.activity.SearchPlaylistsActivity;
 import com.nashss.se.thecookbookservice.activity.UpdatePlaylistActivity;
+import com.nashss.se.thecookbookservice.activity.CreateDrinkRecipeActivity;
+import com.nashss.se.thecookbookservice.activity.GetDrinkRecipeActivity;
+import com.nashss.se.thecookbookservice.activity.CreateFoodRecipeActivity;
+import com.nashss.se.thecookbookservice.activity.GetFoodRecipeActivity;
 
 import dagger.Component;
 
@@ -54,4 +58,11 @@ public interface ServiceComponent {
      */
     UpdatePlaylistActivity provideUpdatePlaylistActivity();
 
+    CreateFoodRecipeActivity provideCreateFoodRecipeActivity();
+
+    CreateDrinkRecipeActivity provideCreateDrinkRecipeActivity();
+
+    GetFoodRecipeActivity provideGetFoodRecipeActivity();
+
+    GetDrinkRecipeActivity provideGetDrinkRecipeActivity();
 }

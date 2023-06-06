@@ -1,7 +1,7 @@
 package com.nashss.se.thecookbookservice.activity;
 
-import com.nashss.se.thecookbookservice.activity.requests.CreateFoodRecipeRequest;
-import com.nashss.se.thecookbookservice.activity.results.CreateFoodRecipeResult;
+import com.nashss.se.thecookbookservice.activity.requests.CreateDrinkRecipeRequest;
+import com.nashss.se.thecookbookservice.activity.results.CreateDrinkRecipeResult;
 import com.nashss.se.thecookbookservice.converters.ModelConverter;
 import com.nashss.se.thecookbookservice.dynamodb.DrinkRecipeDao;
 import com.nashss.se.thecookbookservice.dynamodb.models.DrinkRecipe;
@@ -40,17 +40,17 @@ public class CreateDrinkRecipeActivity {
         //            "] contains illegal characters");
         //}
 
-        DrinkRecipe newDrinkRecipe = new DrinkRecipe;
-        newDrinkRecipe.setCreator(createFoodRecipeRequest.getCreator());
-        newDrinkRecipe.setRecipeTitle(createFoodRecipeRequest.getRecipeTitle());
-        newDrinkRecipe.setIngredients(createFoodRecipeRequest.getIngredients());
-        newDrinkRecipe.setInstructionSteps(createFoodRecipeRequest.getInstructionSteps());
-        newDrinkRecipe.setDescription(createFoodRecipeRequest.getDescription());
-        newDrinkRecipe.setDescriptionTags(createFoodRecipeRequest.getDescriptionTags());
-        newDrinkRecipe.setFoodCategory(createFoodRecipeRequest.getFoodCategory());
-        newDrinkRecipe.setFoodItem(createFoodRecipeRequest.getFoodItem());
-        newDrinkRecipe.setAllergies(createFoodRecipeRequest.getAllergies());
-        newDrinkRecipe.setRatings(createFoodRecipeRequest.getRatings());
+        DrinkRecipe newDrinkRecipe = new DrinkRecipe();
+        newDrinkRecipe.setCreator(createDrinkRecipeRequest.getCreator());
+        newDrinkRecipe.setRecipeTitle(createDrinkRecipeRequest.getRecipeTitle());
+        newDrinkRecipe.setIngredients(createDrinkRecipeRequest.getIngredients());
+        newDrinkRecipe.setInstructionSteps(createDrinkRecipeRequest.getInstructionSteps());
+        newDrinkRecipe.setDescription(createDrinkRecipeRequest.getDescription());
+        newDrinkRecipe.setDescriptionTags(createDrinkRecipeRequest.getDescriptionTags());
+        newDrinkRecipe.setDrinkCategory(createDrinkRecipeRequest.getDrinkCategory());
+        newDrinkRecipe.setDrinkItem(createDrinkRecipeRequest.getDrinkItem());
+        newDrinkRecipe.setAllergies(createDrinkRecipeRequest.getAllergies());
+        newDrinkRecipe.setRatings(createDrinkRecipeRequest.getRatings());
 
         DrinkRecipeModel drinkRecipeModel = new ModelConverter().toDrinkRecipeModel(newDrinkRecipe);
         return CreateDrinkRecipeResult.builder()

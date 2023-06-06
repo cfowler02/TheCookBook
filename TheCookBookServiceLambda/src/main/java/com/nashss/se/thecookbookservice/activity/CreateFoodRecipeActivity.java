@@ -40,7 +40,7 @@ public class CreateFoodRecipeActivity {
         //            "] contains illegal characters");
         //}
 
-        FoodRecipe newFoodRecipe = new FoodRecipe;
+        FoodRecipe newFoodRecipe = new FoodRecipe();
         newFoodRecipe.setCreator(createFoodRecipeRequest.getCreator());
         newFoodRecipe.setRecipeTitle(createFoodRecipeRequest.getRecipeTitle());
         newFoodRecipe.setIngredients(createFoodRecipeRequest.getIngredients());

@@ -62,8 +62,8 @@ public class ModelConverter {
                 .withInstructionSteps(drinkRecipe.getInstructionSteps())
                 .withDescription(drinkRecipe.getDescription())
                 .withDescriptionTags(drinkRecipe.getDescriptionTags())
-                .withFoodCategory(drinkRecipe.getFoodCategory())
-                .withFoodItem(drinkRecipe.getFoodItem())
+                .withDrinkCategory(drinkRecipe.getDrinkCategory())
+                .withDrinkItem(drinkRecipe.getDrinkItem())
                 .withAllergies(drinkRecipe.getAllergies())
                 .withRatings(drinkRecipe.getRatings())
                 .build();

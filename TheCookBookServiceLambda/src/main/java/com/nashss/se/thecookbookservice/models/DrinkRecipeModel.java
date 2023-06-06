@@ -3,23 +3,23 @@ package com.nashss.se.thecookbookservice.models;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Set;
 
 public class DrinkRecipeModel {
     private final String creator;
     private final String recipeTitle;
-    private final List<String> ingredients;
+    private final Map<String, String> ingredients;
     private final LinkedList<String> instructionSteps;
     private final String description;
-    private final List<String> descriptionTags;
+    private final Set<String> descriptionTags;
     private final String drinkCategory;
     private final String drinkItem;
-    private final List<String> allergies;
+    private final Set<String> allergies;
     private final Map<Integer, Integer> ratings;
 
-    private DrinkRecipeModel(String creator, String recipeTitle, List<String> ingredients,
-                             LinkedList<String> instructionSteps, String description, List<String> descriptionTags,
-                             String drinkCategory, String drinkItem, List<String> allergies,
+    private DrinkRecipeModel(String creator, String recipeTitle, Map<String, String> ingredients,
+                             LinkedList<String> instructionSteps, String description, Set<String> descriptionTags,
+                             String drinkCategory, String drinkItem, Set<String> allergies,
                              Map<Integer, Integer> ratings) {
         this.creator = creator;
         this.recipeTitle = recipeTitle;
@@ -42,7 +42,7 @@ public class DrinkRecipeModel {
         return recipeTitle;
     }
 
-    public List<String> getIngredients() {
+    public Map<String, String> getIngredients() {
         return ingredients;
     }
 
@@ -54,7 +54,7 @@ public class DrinkRecipeModel {
         return description;
     }
 
-    public List<String> getDescriptionTags() {
+    public Set<String> getDescriptionTags() {
         return descriptionTags;
     }
 
@@ -67,7 +67,7 @@ public class DrinkRecipeModel {
         return drinkItem;
     }
 
-    public List<String> getAllergies() {
+    public Set<String> getAllergies() {
         return allergies;
     }
 
@@ -84,13 +84,13 @@ public class DrinkRecipeModel {
     public static class Builder {
         private String creator;
         private String recipeTitle;
-        private List<String> ingredients;
+        private Map<String, String> ingredients;
         private LinkedList<String> instructionSteps;
         private String description;
-        private List<String> descriptionTags;
+        private Set<String> descriptionTags;
         private String drinkCategory;
         private String drinkItem;
-        private List<String> allergies;
+        private Set<String> allergies;
         private Map<Integer, Integer> ratings;
 
         public Builder withCreator(String creator){
@@ -103,7 +103,7 @@ public class DrinkRecipeModel {
             return this;
         }
 
-        public Builder withIngredients(List<String> ingredients){
+        public Builder withIngredients(Map<String, String> ingredients){
             this.ingredients = ingredients;
             return this;
         }
@@ -118,7 +118,7 @@ public class DrinkRecipeModel {
             return this;
         }
 
-        public Builder withDescriptionTags(List<String> descriptionTags){
+        public Builder withDescriptionTags(Set<String> descriptionTags){
             this.descriptionTags = descriptionTags;
             return this;
         }
@@ -134,7 +134,7 @@ public class DrinkRecipeModel {
             return this;
         }
 
-        public Builder withAllergies(List<String> allergies){
+        public Builder withAllergies(Set<String> allergies){
             this.allergies = allergies;
             return this;
         }
