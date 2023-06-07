@@ -3,12 +3,9 @@ package com.nashss.se.thecookbookservice.activity.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import java.util.List;
 import java.util.Map;
 import java.util.LinkedList;
 import java.util.Set;
-
-import static com.nashss.se.thecookbookservice.utils.CollectionUtils.copyToList;
 
 @JsonDeserialize(builder = CreateFoodRecipeRequest.Builder.class)
 public class CreateFoodRecipeRequest {
