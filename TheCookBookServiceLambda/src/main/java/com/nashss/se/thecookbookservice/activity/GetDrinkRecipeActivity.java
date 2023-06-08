@@ -19,7 +19,7 @@ public class GetDrinkRecipeActivity {
     private final DrinkRecipeDao drinkRecipeDao;
 
     @Inject
-    public GetDrinkRecipeActivity (DrinkRecipeDao drinkRecipeDao) {
+    public GetDrinkRecipeActivity(DrinkRecipeDao drinkRecipeDao) {
         this.drinkRecipeDao = drinkRecipeDao;
     }
 

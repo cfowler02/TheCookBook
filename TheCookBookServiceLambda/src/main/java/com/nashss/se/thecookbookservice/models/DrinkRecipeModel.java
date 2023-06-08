@@ -1,7 +1,6 @@
 package com.nashss.se.thecookbookservice.models;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -77,7 +76,7 @@ public class DrinkRecipeModel {
 
 
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -93,58 +92,58 @@ public class DrinkRecipeModel {
         private Set<String> allergies;
         private Map<Integer, Integer> ratings;
 
-        public Builder withCreator(String creator){
+        public Builder withCreator(String creator) {
             this.creator = creator;
             return this;
         }
 
-        public Builder withRecipeTitle(String recipeTitle){
+        public Builder withRecipeTitle(String recipeTitle) {
             this.recipeTitle = recipeTitle;
             return this;
         }
 
-        public Builder withIngredients(Map<String, String> ingredients){
+        public Builder withIngredients(Map<String, String> ingredients) {
             this.ingredients = ingredients;
             return this;
         }
 
-        public Builder withInstructionSteps(LinkedList<String> instructionSteps){
+        public Builder withInstructionSteps(LinkedList<String> instructionSteps) {
             this.instructionSteps = instructionSteps;
             return this;
         }
 
-        public Builder withDescription(String description){
+        public Builder withDescription(String description) {
             this.description = description;
             return this;
         }
 
-        public Builder withDescriptionTags(Set<String> descriptionTags){
+        public Builder withDescriptionTags(Set<String> descriptionTags) {
             this.descriptionTags = descriptionTags;
             return this;
         }
 
 
-        public Builder withDrinkCategory(String drinkCategory){
+        public Builder withDrinkCategory(String drinkCategory) {
             this.drinkCategory = drinkCategory;
             return this;
         }
 
-        public Builder withDrinkItem(String drinkItem){
+        public Builder withDrinkItem(String drinkItem) {
             this.drinkItem = drinkItem;
             return this;
         }
 
-        public Builder withAllergies(Set<String> allergies){
+        public Builder withAllergies(Set<String> allergies) {
             this.allergies = allergies;
             return this;
         }
 
-        public Builder withRatings(Map<Integer, Integer> ratings){
+        public Builder withRatings(Map<Integer, Integer> ratings) {
             this.ratings = ratings;
             return this;
         }
 
-        public DrinkRecipeModel build(){
+        public DrinkRecipeModel build() {
             return new DrinkRecipeModel(creator, recipeTitle, ingredients, instructionSteps, description,
                     descriptionTags, drinkCategory, drinkItem, allergies, ratings);
         }

@@ -6,9 +6,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.LinkedList;
-import java.util.Set;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 @DynamoDBTable(tableName = "drink_recipes")
 public class DrinkRecipe {
@@ -114,8 +114,12 @@ public class DrinkRecipe {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DrinkRecipe that = (DrinkRecipe) o;
         return Objects.equals(creator, that.creator) &&
                 Objects.equals(recipeTitle, that.recipeTitle) &&

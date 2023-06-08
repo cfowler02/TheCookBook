@@ -3,8 +3,8 @@ package com.nashss.se.thecookbookservice.activity.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import java.util.Map;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
 
 @JsonDeserialize(builder = CreateDrinkRecipeRequest.Builder.class)

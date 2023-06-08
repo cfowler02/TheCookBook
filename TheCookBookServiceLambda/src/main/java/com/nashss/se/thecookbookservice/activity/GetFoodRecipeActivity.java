@@ -19,7 +19,7 @@ public class GetFoodRecipeActivity {
     private final FoodRecipeDao foodRecipeDao;
 
     @Inject
-    public GetFoodRecipeActivity (FoodRecipeDao foodRecipeDao) {
+    public GetFoodRecipeActivity(FoodRecipeDao foodRecipeDao) {
         this.foodRecipeDao = foodRecipeDao;
     }
 
