@@ -47,4 +47,11 @@ public class DrinkRecipeDao {
 
         return this.dynamoDBMapper.scan(DrinkRecipe.class, dynamoDBScanExpression);
     }
+
+    public List<DrinkRecipe> viewDrinkRecipe() {
+        DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
+
+
+        return this.dynamoDBMapper.scan(DrinkRecipe.class, dynamoDBScanExpression);
+    }
 }

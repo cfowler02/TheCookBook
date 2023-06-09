@@ -301,6 +301,126 @@ Resources:
             Path: /drinkRecipes/{creator}/{recipeTitle}
             Method: get
 
+  RateFoodRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetFoodRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TheCookBookService:
+          Type: Api
+          Properties:
+            Path: /foodRecipes/{creator}/{recipeTitle}/{rating}
+            Method: put
+
+  RateDrinkRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetDrinkRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TheCookBookService:
+          Type: Api
+          Properties:
+            Path: /drinkRecipes/{creator}/{recipeTitle}/{rating}
+            Method: put
+
+  SearchFoodRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetFoodRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TheCookBookService:
+          Type: Api
+          Properties:
+            Path: /foodRecipes/{criteria}
+            Method: get
+
+  SearchDrinkRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetDrinkRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TheCookBookService:
+          Type: Api
+          Properties:
+            Path: /drinkRecipes/{criteria}
+            Method: get
+
+  ViewFoodRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetFoodRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TheCookBookService:
+          Type: Api
+          Properties:
+            Path: /foodRecipes
+            Method: get
+
+  ViewDrinkRecipeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TheCookBookServiceLambda
+      Handler: com.nashss.se.thecookbookservice.lambda.GetDrinkRecipeLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TheCookBookService:
+          Type: Api
+          Properties:
+            Path: /drinkRecipes
+            Method: get
+
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------

@@ -44,6 +44,14 @@ public class FoodRecipeDao {
         DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
 
 
+        //return this.dynamoDBMapper.scan(FoodRecipe.class, dynamoDBScanExpression);
+        return null;
+    }
+
+    public List<FoodRecipe> viewFoodRecipe() {
+        DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
+
+
         return this.dynamoDBMapper.scan(FoodRecipe.class, dynamoDBScanExpression);
     }
 }

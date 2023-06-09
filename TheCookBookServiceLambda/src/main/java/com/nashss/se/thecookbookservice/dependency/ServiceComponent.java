@@ -1,9 +1,6 @@
 package com.nashss.se.thecookbookservice.dependency;
 
-import com.nashss.se.thecookbookservice.activity.CreateDrinkRecipeActivity;
-import com.nashss.se.thecookbookservice.activity.CreateFoodRecipeActivity;
-import com.nashss.se.thecookbookservice.activity.GetDrinkRecipeActivity;
-import com.nashss.se.thecookbookservice.activity.GetFoodRecipeActivity;
+import com.nashss.se.thecookbookservice.activity.*;
 
 import dagger.Component;
 
@@ -23,4 +20,16 @@ public interface ServiceComponent {
     GetFoodRecipeActivity provideGetFoodRecipeActivity();
 
     GetDrinkRecipeActivity provideGetDrinkRecipeActivity();
+
+    RateDrinkRecipeActivity provideRateDrinkRecipeActivity();
+
+    RateFoodRecipeActivity provideRateFoodRecipeActivity();
+
+    SearchDrinkRecipeActivity provideSearchDrinkRecipeActivity();
+
+    SearchFoodRecipeActivity provideSearchFoodRecipeActivity();
+
+    ViewDrinkRecipeActivity provideViewDrinkRecipeActivity();
+
+    ViewFoodRecipeActivity provideViewFoodRecipeActivity();
 }
