@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 public class RateFoodRecipeActivityTest {
@@ -50,8 +51,8 @@ public class RateFoodRecipeActivityTest {
 
         Map<Integer, Integer> expectedRatingsTested = new HashMap<>();
         expectedRatingsTested.put(-1, 0);
-        expectedRatingsTested.put(0, 1);
-        expectedRatingsTested.put(1, 0);
+        expectedRatingsTested.put(0, 0);
+        expectedRatingsTested.put(1, 1);
 
         FoodRecipe foodRecipe = new FoodRecipe();
         foodRecipe.setCreator(expectedCreator);
@@ -66,7 +67,7 @@ public class RateFoodRecipeActivityTest {
         foodRecipe.setAllergies(expectedAllergies);
         foodRecipe.setRatings(expectedRatings);
 
-        foodRecipeDao.saveFoodRecipe(foodRecipe);
+        //foodRecipeDao.saveFoodRecipe(foodRecipe);
 
         RateFoodRecipeRequest request1 = RateFoodRecipeRequest.builder()
                 .withCreator(expectedCreator)
@@ -74,11 +75,14 @@ public class RateFoodRecipeActivityTest {
                 .withRating(1)
                 .build();
 
+        when(foodRecipeDao.getFoodRecipe(expectedCreator, expectedRecipeTitle)).thenReturn(foodRecipe);
+        when(foodRecipeDao.saveFoodRecipe(foodRecipe)).thenReturn(foodRecipe);
+
         //WHEN
-        //RateFoodRecipeResult result1 = activity.handleRequest(request1);
+        RateFoodRecipeResult result1 = activity.handleRequest(request1);
 
         //THEN
-        //assertEquals(expectedRatingsTested, result1.getRatings());
+        assertEquals(expectedRatingsTested, result1.getRatings());
         assertEquals(expectedCreator, request1.getCreator());
         assertEquals(expectedRecipeTitle, request1.getRecipeTitle());
 

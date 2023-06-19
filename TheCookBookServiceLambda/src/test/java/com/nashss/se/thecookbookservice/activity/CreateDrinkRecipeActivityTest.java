@@ -15,6 +15,8 @@ import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static org.mockito.Mockito.verify;
@@ -33,6 +35,7 @@ public class CreateDrinkRecipeActivityTest {
 
     @Test
     public void handleRequest_withMostAttributes_createsAndSavesDrinkRecipe() {
+        //Given
         String expectedCreator = "expectedCreator";
         String expectedRecipeTitle = "expectedRecipeTitle";
         Map<String, String> expectedIngredients = new HashMap();
@@ -50,6 +53,18 @@ public class CreateDrinkRecipeActivityTest {
         expectedRatings.put(0, 1);
         expectedRatings.put(1, 2);
 
+        DrinkRecipe drinkRecipe = new DrinkRecipe();
+        drinkRecipe.setCreator(expectedCreator);
+        drinkRecipe.setRecipeTitle(expectedRecipeTitle);
+        drinkRecipe.setIngredients(expectedIngredients);
+        drinkRecipe.setInstructionSteps(expectedInstructionSteps);
+        drinkRecipe.setDescription(expectedDescription);
+        drinkRecipe.setDescriptionTags(expectedDescriptionTags);
+        drinkRecipe.setDrinkCategory(expectedDrinkCategory);
+        drinkRecipe.setDrinkItem(expectedDrinkItem);
+        drinkRecipe.setAllergies(expectedAllergies);
+        drinkRecipe.setRatings(expectedRatings);
+
         CreateDrinkRecipeRequest request1 = CreateDrinkRecipeRequest.builder()
                 .withCreator(expectedCreator)
                 .withRecipeTitle(expectedRecipeTitle)
@@ -62,10 +77,14 @@ public class CreateDrinkRecipeActivityTest {
                 .withAllergies(expectedAllergies)
                 .withRatings(expectedRatings)
                 .build();
-        //WHen
+
+        when(drinkRecipeDao.saveDrinkRecipe(eq(drinkRecipe))).thenReturn(drinkRecipe);
+
+        //When
         CreateDrinkRecipeResult result1 = activity.handleRequest(request1);
+
         //Then
-        //verify(drinkRecipeDao).saveDrinkRecipe(any(DrinkRecipe.class));
+        verify(drinkRecipeDao).saveDrinkRecipe(eq(drinkRecipe));
         assertEquals(expectedCreator, result1.getDrinkRecipe().getCreator());
         assertEquals(expectedRecipeTitle, result1.getDrinkRecipe().getRecipeTitle());
         assertEquals(expectedIngredients, result1.getDrinkRecipe().getIngredients());

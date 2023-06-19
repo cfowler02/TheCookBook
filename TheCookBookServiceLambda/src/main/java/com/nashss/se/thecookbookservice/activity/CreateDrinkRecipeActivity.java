@@ -36,6 +36,7 @@ public class CreateDrinkRecipeActivity {
         newDrinkRecipe.setDrinkItem(createDrinkRecipeRequest.getDrinkItem());
         newDrinkRecipe.setAllergies(createDrinkRecipeRequest.getAllergies());
         newDrinkRecipe.setRatings(createDrinkRecipeRequest.getRatings());
+        drinkRecipeDao.saveDrinkRecipe(newDrinkRecipe);
 
         DrinkRecipeModel drinkRecipeModel = new ModelConverter().toDrinkRecipeModel(newDrinkRecipe);
         return CreateDrinkRecipeResult.builder()

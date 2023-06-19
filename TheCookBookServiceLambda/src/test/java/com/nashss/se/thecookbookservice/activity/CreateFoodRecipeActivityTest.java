@@ -15,6 +15,7 @@ import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static org.mockito.Mockito.verify;
 
@@ -63,10 +64,12 @@ public class CreateFoodRecipeActivityTest {
                 .withAllergies(expectedAllergies)
                 .withRatings(expectedRatings)
                 .build();
-        //WHen
+
+        //When
         CreateFoodRecipeResult result1 = activity.handleRequest(request1);
+
         //Then
-        //verify(foodRecipeDao).saveFoodRecipe(any(FoodRecipe.class));
+        verify(foodRecipeDao).saveFoodRecipe(any(FoodRecipe.class));
         assertEquals(expectedCreator, result1.getFoodRecipe().getCreator());
         assertEquals(expectedRecipeTitle, result1.getFoodRecipe().getRecipeTitle());
         assertEquals(expectedIngredients, result1.getFoodRecipe().getIngredients());

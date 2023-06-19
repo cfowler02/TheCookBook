@@ -12,8 +12,6 @@ import java.util.Set;
 
 @DynamoDBTable(tableName = "food_recipes")
 public class FoodRecipe {
-
-
     private String creator;
     private String recipeTitle;
     private Map<String, String> ingredients;

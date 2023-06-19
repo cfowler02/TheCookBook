@@ -1,4 +1,4 @@
 package com.nashss.se.thecookbookservice.activity;
 
-public class SearchFoodRecipeActivity {
+public class SearchFoodRecipeActivityTest {
 }
