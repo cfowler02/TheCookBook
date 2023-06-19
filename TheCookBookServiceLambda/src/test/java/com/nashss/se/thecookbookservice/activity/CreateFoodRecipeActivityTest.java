@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 public class CreateFoodRecipeActivityTest {
     @Mock
     private FoodRecipeDao foodRecipeDao;
-    @InjectMocks
+    //@InjectMocks
     private CreateFoodRecipeActivity activity;
 
     @BeforeEach

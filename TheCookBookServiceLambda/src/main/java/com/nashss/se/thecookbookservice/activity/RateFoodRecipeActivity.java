@@ -24,11 +24,8 @@ public class RateFoodRecipeActivity {
         String creator = rateFoodRecipeRequest.getCreator();
         String recipeTitle = rateFoodRecipeRequest.getRecipeTitle();
 
-        FoodRecipe foodRecipe;
-        try {foodRecipe = foodRecipeDao.getFoodRecipe(creator, recipeTitle);
-        } catch (FoodRecipeNotFoundException ex) {
-            throw new FoodRecipeNotFoundException("Food Recipe is not in our database.");
-        }
+        FoodRecipe foodRecipe = foodRecipeDao.getFoodRecipe(creator, recipeTitle);
+
 
         int ratingToAdd = rateFoodRecipeRequest.getRating();
 

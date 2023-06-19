@@ -26,10 +26,10 @@ public class SearchFoodRecipeActivity {
 
     public SearchFoodRecipeResult handleRequest(final SearchFoodRecipeRequest searchFoodRecipeRequest) {
         log.info("Received SearchFoodRecipeRequest {}", searchFoodRecipeRequest);
-        String criteria = ifNull(searchFoodRecipeRequest.getCriteria(), "");
-        // String[] criteriaArray = criteria.isBlank() ? new String[0] : criteria.split("\\s");
+        String criteria = searchFoodRecipeRequest.getCriteria();
+        String filter = searchFoodRecipeRequest.getFilter();
 
-        List<FoodRecipe> results = foodRecipeDao.searchFoodRecipe(criteria);
+        List<FoodRecipe> results = foodRecipeDao.searchFoodRecipe(filter, criteria);
         List<FoodRecipeModel> foodRecipeModels = new ModelConverter().toFoodRecipeModelList(results);
 
         return SearchFoodRecipeResult.builder()

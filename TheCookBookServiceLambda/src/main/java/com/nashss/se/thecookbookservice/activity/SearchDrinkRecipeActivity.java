@@ -25,10 +25,10 @@ public class SearchDrinkRecipeActivity {
 
     public SearchDrinkRecipeResult handleRequest(final SearchDrinkRecipeRequest searchDrinkRecipeRequest) {
         log.info("Received SearchDrinkRecipeRequest {}", searchDrinkRecipeRequest);
-        String criteria = ifNull(searchDrinkRecipeRequest.getCriteria(), "");
-        // String[] criteriaArray = criteria.isBlank() ? new String[0] : criteria.split("\\s");
+        String criteria = searchDrinkRecipeRequest.getCriteria();
+        String filter = searchDrinkRecipeRequest.getFilter();
 
-        List<DrinkRecipe> results = drinkRecipeDao.searchDrinkRecipe(criteria);
+        List<DrinkRecipe> results = drinkRecipeDao.searchDrinkRecipe(filter, criteria);
         List<DrinkRecipeModel> drinkRecipeModels = new ModelConverter().toDrinkRecipeModelList(results);
 
         return SearchDrinkRecipeResult.builder()

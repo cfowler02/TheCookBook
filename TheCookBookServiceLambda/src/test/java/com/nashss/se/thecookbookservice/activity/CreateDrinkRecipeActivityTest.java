@@ -15,6 +15,7 @@ import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.MockitoAnnotations.initMocks;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static org.mockito.Mockito.verify;
 
@@ -26,7 +27,7 @@ public class CreateDrinkRecipeActivityTest {
 
     @BeforeEach
     void setup() {
-        openMocks(this);
+        initMocks(this);
         activity = new CreateDrinkRecipeActivity(drinkRecipeDao);
     }
 
