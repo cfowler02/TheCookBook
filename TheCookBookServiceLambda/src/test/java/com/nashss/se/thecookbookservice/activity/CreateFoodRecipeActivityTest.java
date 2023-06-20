@@ -15,6 +15,7 @@ import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static org.mockito.Mockito.verify;
@@ -51,6 +52,19 @@ public class CreateFoodRecipeActivityTest {
         expectedRatings.put(0, 1);
         expectedRatings.put(1, 2);
 
+        FoodRecipe foodRecipe = new FoodRecipe();
+        foodRecipe.setCreator(expectedCreator);
+        foodRecipe.setRecipeTitle(expectedRecipeTitle);
+        foodRecipe.setIngredients(expectedIngredients);
+        foodRecipe.setInstructionSteps(expectedInstructionSteps);
+        foodRecipe.setDescription(expectedDescription);
+        foodRecipe.setDescriptionTags(expectedDescriptionTags);
+        foodRecipe.setTimeEstimate(expectedTimeEstimate);
+        foodRecipe.setFoodCategory(expectedFoodCategory);
+        foodRecipe.setFoodItem(expectedFoodItem);
+        foodRecipe.setAllergies(expectedAllergies);
+        foodRecipe.setRatings(expectedRatings);
+
         CreateFoodRecipeRequest request1 = CreateFoodRecipeRequest.builder()
                 .withCreator(expectedCreator)
                 .withRecipeTitle(expectedRecipeTitle)
@@ -65,11 +79,13 @@ public class CreateFoodRecipeActivityTest {
                 .withRatings(expectedRatings)
                 .build();
 
+        when(foodRecipeDao.saveFoodRecipe(eq(foodRecipe))).thenReturn(foodRecipe);
+
         //When
         CreateFoodRecipeResult result1 = activity.handleRequest(request1);
 
         //Then
-        verify(foodRecipeDao).saveFoodRecipe(any(FoodRecipe.class));
+        verify(foodRecipeDao).saveFoodRecipe(eq(foodRecipe));
         assertEquals(expectedCreator, result1.getFoodRecipe().getCreator());
         assertEquals(expectedRecipeTitle, result1.getFoodRecipe().getRecipeTitle());
         assertEquals(expectedIngredients, result1.getFoodRecipe().getIngredients());

@@ -36,6 +36,7 @@ public class CreateFoodRecipeActivity {
         newFoodRecipe.setFoodItem(createFoodRecipeRequest.getFoodItem());
         newFoodRecipe.setAllergies(createFoodRecipeRequest.getAllergies());
         newFoodRecipe.setRatings(createFoodRecipeRequest.getRatings());
+        foodRecipeDao.saveFoodRecipe(newFoodRecipe);
 
         FoodRecipeModel foodRecipeModel = new ModelConverter().toFoodRecipeModel(newFoodRecipe);
         return CreateFoodRecipeResult.builder()
