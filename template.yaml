@@ -278,7 +278,7 @@ Resources:
         TheCookBookService:
           Type: Api
           Properties:
-            Path: /foodRecipes/{creator}/{recipeTitle}
+            Path: /foodRecipes/{creator}/title/{recipeTitle}
             Method: get
 
   GetDrinkRecipeLambda:
@@ -298,7 +298,7 @@ Resources:
         TheCookBookService:
           Type: Api
           Properties:
-            Path: /drinkRecipes/{creator}/{recipeTitle}
+            Path: /drinkRecipes/{creator}/title/{recipeTitle}
             Method: get
 
   RateFoodRecipeLambda:
@@ -318,7 +318,7 @@ Resources:
         TheCookBookService:
           Type: Api
           Properties:
-            Path: /foodRecipes/{creator}/{recipeTitle}/{rating}
+            Path: /foodRecipes/{creator}/title/{recipeTitle}/rating/{rating}
             Method: put
 
   RateDrinkRecipeLambda:
@@ -338,7 +338,7 @@ Resources:
         TheCookBookService:
           Type: Api
           Properties:
-            Path: /drinkRecipes/{creator}/{recipeTitle}/{rating}
+            Path: /drinkRecipes/{creator}/title/{recipeTitle}/rating/{rating}
             Method: put
 
   SearchFoodRecipeLambda:
@@ -358,7 +358,7 @@ Resources:
         TheCookBookService:
           Type: Api
           Properties:
-            Path: /foodRecipes/{criteria}
+            Path: /foodRecipes/search/{filter}/criteria/{criteria}
             Method: get
 
   SearchDrinkRecipeLambda:
@@ -378,7 +378,7 @@ Resources:
         TheCookBookService:
           Type: Api
           Properties:
-            Path: /drinkRecipes/{criteria}
+            Path: /drinkRecipes/search/{filter}/criteria/{criteria}
             Method: get
 
   ViewFoodRecipeLambda:

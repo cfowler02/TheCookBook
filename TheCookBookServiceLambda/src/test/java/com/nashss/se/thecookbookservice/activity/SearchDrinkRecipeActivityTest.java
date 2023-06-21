@@ -27,7 +27,7 @@ public class SearchDrinkRecipeActivityTest {
         searchDrinkRecipeActivity = new SearchDrinkRecipeActivity(drinkRecipeDao);
     }
 
-    /*
+
 
     @Test
     public void handleRequest_whenRecipeCreatorMatchSearch_returnsRecipeModelListInResult() {
@@ -48,8 +48,8 @@ public class SearchDrinkRecipeActivityTest {
 
 
         List<DrinkRecipe> expected = List.of(
-        newRecipe(criteria, "butter soup", ingredients1, descriptionTags1, "American",
-                "Butter soup"), newRecipe(criteria, "Grilled Cheese" , ingredients2,
+                newRecipe(criteria, "butter soup", ingredients1, descriptionTags1, "American",
+                        "Butter soup"), newRecipe(criteria, "Grilled Cheese", ingredients2,
                         descriptionTags2, "American", "Grilled Cheese"));
 
         when(drinkRecipeDao.searchDrinkRecipe(filter, criteria)).thenReturn(expected);
@@ -78,9 +78,9 @@ public class SearchDrinkRecipeActivityTest {
             assertEquals(expected.get(i).getAllergies(), resultRecipes.get(i).getAllergies());
             assertEquals(expected.get(i).getRatings(), resultRecipes.get(i).getRatings());
         }
-
+    }
     @Test
-    public void handleRequest_whenRecipeTitleMatchSearch_returnsRecipeModelListInResult() {
+    public void handleRequest_whenRecipeTitleMatchSearch_returnsRecipeModelListInResult () {
         // GIVEN
         String criteria = "title";
         String filter = "RecipeTitle";
@@ -132,7 +132,7 @@ public class SearchDrinkRecipeActivityTest {
 
 
     @Test
-    public void handleRequest_whenRecipeIngredientMatchSearch_returnsRecipeModelListInResult() {
+    public void handleRequest_whenRecipeIngredientMatchSearch_returnsRecipeModelListInResult () {
         // GIVEN
         String criteria = "butter";
         String filter = "Ingredient";
@@ -150,7 +150,7 @@ public class SearchDrinkRecipeActivityTest {
         descriptionTags2.add("classic");
 
 
-        List<FoodRecipe> expected = List.of(
+        List<DrinkRecipe> expected = List.of(
                 newRecipe("chase fowler", "title", ingredients1, descriptionTags1, "American",
                         "Butter soup"), newRecipe("God", "grilled cheese is the title",
                         ingredients2, descriptionTags2, "American", "Grilled Cheese"));
@@ -184,7 +184,7 @@ public class SearchDrinkRecipeActivityTest {
     }
 
     @Test
-    public void handleRequest_whenRecipeDescriptionTagMatchSearch_returnsRecipeModelListInResult() {
+    public void handleRequest_whenRecipeDescriptionTagMatchSearch_returnsRecipeModelListInResult () {
         // GIVEN
         String criteria = "classic";
         String filter = "DescriptionTag";
@@ -203,7 +203,7 @@ public class SearchDrinkRecipeActivityTest {
         descriptionTags2.add("classic");
 
 
-        List<FoodRecipe> expected = List.of(
+        List<DrinkRecipe> expected = List.of(
                 newRecipe("chase fowler", "title", ingredients1, descriptionTags1, "American",
                         "Butter soup"), newRecipe("God", "grilled cheese is the title",
                         ingredients2, descriptionTags2, "American", "Grilled Cheese"));
@@ -237,10 +237,10 @@ public class SearchDrinkRecipeActivityTest {
     }
 
     @Test
-    public void handleRequest_whenRecipeFoodCategoryMatchSearch_returnsRecipeModelListInResult() {
+    public void handleRequest_whenRecipeDrinkCategoryMatchSearch_returnsRecipeModelListInResult () {
         // GIVEN
         String criteria = "American";
-        String filter = "FoodCategory";
+        String filter = "DrinkCategory";
 
         Map<String, String> ingredients1 = new HashMap<>();
         ingredients1.put("butter", "as much as you want");
@@ -256,19 +256,11 @@ public class SearchDrinkRecipeActivityTest {
         descriptionTags2.add("classic");
 
 
-        List<FoodRecipe> expected = List.of(
+        List<DrinkRecipe> expected = List.of(
                 newRecipe("chase fowler", "title", ingredients1, descriptionTags1, "American",
                         "Butter soup"), newRecipe("God", "grilled cheese is the title",
                         ingredients2, descriptionTags2, "American", "Grilled Cheese"));
 
-        when(foodRecipeDao.searchFoodRecipe(filter, criteria)).thenReturn(expected);
-
-        SearchFoodRecipeRequest request = SearchFoodRecipeRequest.builder()
-                .withCriteria(criteria)
-                .withFilter(filter)
-                .build();
-
-        // WHEN
         when(drinkRecipeDao.searchDrinkRecipe(filter, criteria)).thenReturn(expected);
 
         SearchDrinkRecipeRequest request = SearchDrinkRecipeRequest.builder()
@@ -298,10 +290,10 @@ public class SearchDrinkRecipeActivityTest {
     }
 
     @Test
-    public void handleRequest_whenRecipeFoodItemMatchSearch_returnsRecipeModelListInResult() {
+    public void handleRequest_whenRecipeDrinkItemMatchSearch_returnsRecipeModelListInResult () {
         // GIVEN
         String criteria = "Grilled Cheese";
-        String filter = "FoodItem";
+        String filter = "DrinkItem";
 
         Map<String, String> ingredients1 = new HashMap<>();
         ingredients1.put("Butter", "");
@@ -319,7 +311,7 @@ public class SearchDrinkRecipeActivityTest {
         descriptionTags2.add("classic");
 
 
-        List<FoodRecipe> expected = List.of(
+        List<DrinkRecipe> expected = List.of(
                 newRecipe("chase fowler", "title", ingredients1, descriptionTags1, "American",
                         "Grilled Cheese"), newRecipe("God", "grilled cheese is the title",
                         ingredients2, descriptionTags2, "American", "Grilled Cheese"));
@@ -353,31 +345,26 @@ public class SearchDrinkRecipeActivityTest {
     }
 
 
-    private static DrinkRecipe newRecipe(String creator, String recipeTitle, Map<String, String> ingredients,
-                                        Set<String> descriptionTags, String drinkCategory, String drinkItem){
+    private static DrinkRecipe newRecipe(String creator, String recipeTitle, Map < String, String > ingredients,
+                                         Set <String> descriptionTags, String drinkCategory, String drinkItem){
         DrinkRecipe drinkRecipe = new DrinkRecipe();
-
         drinkRecipe.setCreator(creator);
         drinkRecipe.setRecipeTitle(recipeTitle);
         drinkRecipe.setIngredients(ingredients);
         drinkRecipe.setDescriptionTags(descriptionTags);
         drinkRecipe.setDrinkCategory(drinkCategory);
         drinkRecipe.setDrinkItem(drinkItem);
-
         drinkRecipe.setDescription("a generic description");
         LinkedList<String> instructions = new LinkedList<>();
         instructions.add("buy takeout");
         drinkRecipe.setInstructionSteps(instructions);
         Map<Integer, Integer> ratings = new HashMap<>();
-        ratings.put(-1,0);
-        ratings.put(0,0);
-        ratings.put(1,0);
+        ratings.put(-1, 0);
+        ratings.put(0, 0);
+        ratings.put(1, 0);
         drinkRecipe.setRatings(ratings);
         drinkRecipe.setAllergies(null);
 
         return drinkRecipe;
     }
-
-     */
-
 }
