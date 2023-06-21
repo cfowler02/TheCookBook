@@ -360,7 +360,6 @@ public class SearchFoodRecipeActivityTest {
         foodRecipe.setDescriptionTags(descriptionTags);
         foodRecipe.setFoodCategory(foodCategory);
         foodRecipe.setFoodItem(foodItem);
-
         foodRecipe.setDescription("a generic description");
         LinkedList<String> instructions = new LinkedList<>();
         instructions.add("buy takeout");
