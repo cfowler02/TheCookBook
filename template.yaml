@@ -440,6 +440,19 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "food_recipes"
+      GlobalSecondaryIndexes:
+        - IndexName: "FoodCategoryIndex"
+          KeySchema:
+            - AttributeName: "foodCategory"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
+        - IndexName: "FoodItemIndex"
+          KeySchema:
+            - AttributeName: "foodItem"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
 
   DrinkRecipesTable:
     Type: AWS::DynamoDB::Table
@@ -456,6 +469,19 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "drink_recipes"
+      GlobalSecondaryIndexes:
+        - IndexName: "DrinkCategoryIndex"
+          KeySchema:
+            - AttributeName: "drinkCategory"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
+        - IndexName: "DrinkItemIndex"
+          KeySchema:
+            - AttributeName: "drinkItem"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

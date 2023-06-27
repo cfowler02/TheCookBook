@@ -2,6 +2,7 @@ package com.nashss.se.thecookbookservice.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.nashss.se.thecookbookservice.dynamodb.models.DrinkRecipe;
 import com.nashss.se.thecookbookservice.dynamodb.models.FoodRecipe;
 import com.nashss.se.thecookbookservice.exceptions.FoodRecipeNotFoundException;
 import com.nashss.se.thecookbookservice.metrics.MetricsConstants;
@@ -66,13 +67,23 @@ public class FoodRecipeDao {
                     .withExpressionAttributeValues(valueMap);
             recipeList.addAll(dynamoDBMapper.scan(FoodRecipe.class, dynamoDBScanExpression));
         } else if (filter == "FoodCategory") {
-            dynamoDBScanExpression.withFilterExpression("contains(food_category, :criteria)")
+            //dynamoDBScanExpression.withFilterExpression("contains(food_category, :criteria)")
+            //        .withExpressionAttributeValues(valueMap);
+            //recipeList.addAll(dynamoDBMapper.scan(FoodRecipe.class, dynamoDBScanExpression));
+            dynamoDBQueryExpression.withIndexName("FoodCategoryIndex")
+                    .withConsistentRead(false)
+                    .withKeyConditionExpression("food_category = :criteria")
                     .withExpressionAttributeValues(valueMap);
-            recipeList.addAll(dynamoDBMapper.scan(FoodRecipe.class, dynamoDBScanExpression));
+            recipeList.addAll(dynamoDBMapper.query(FoodRecipe.class, dynamoDBQueryExpression));
         } else if (filter == "FoodItem") {
-            dynamoDBScanExpression.withFilterExpression("food_recipe = :criteria")
+            //dynamoDBScanExpression.withFilterExpression("food_recipe = :criteria")
+            //        .withExpressionAttributeValues(valueMap);
+            //recipeList.addAll(dynamoDBMapper.scan(FoodRecipe.class, dynamoDBScanExpression));
+            dynamoDBQueryExpression.withIndexName("FoodItemIndex")
+                    .withConsistentRead(false)
+                    .withKeyConditionExpression("food_item = :criteria")
                     .withExpressionAttributeValues(valueMap);
-            recipeList.addAll(dynamoDBMapper.scan(FoodRecipe.class, dynamoDBScanExpression));
+            recipeList.addAll(dynamoDBMapper.query(FoodRecipe.class, dynamoDBQueryExpression));
         }
 
         return recipeList;

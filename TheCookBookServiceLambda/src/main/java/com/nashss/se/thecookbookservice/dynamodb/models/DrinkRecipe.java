@@ -1,9 +1,6 @@
 package com.nashss.se.thecookbookservice.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.LinkedList;
 import java.util.Map;
@@ -78,7 +75,7 @@ public class DrinkRecipe {
         this.descriptionTags = descriptionTags;
     }
 
-    @DynamoDBAttribute(attributeName = "drink_category")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "DrinkCategoryIndex", attributeName = "drink_category")
     public String getDrinkCategory() {
         return drinkCategory;
     }
@@ -86,7 +83,7 @@ public class DrinkRecipe {
     public void setDrinkCategory(String drinkCategory) {
         this.drinkCategory = drinkCategory;
     }
-    @DynamoDBAttribute(attributeName = "drink_item")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "DrinkItemIndex", attributeName = "drink_item")
     public String getDrinkItem() {
         return drinkItem;
     }

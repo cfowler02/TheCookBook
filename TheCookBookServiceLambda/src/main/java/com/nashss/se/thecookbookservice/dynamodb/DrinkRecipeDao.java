@@ -69,13 +69,22 @@ public class DrinkRecipeDao {
                     .withExpressionAttributeValues(valueMap);
             recipeList.addAll(dynamoDBMapper.scan(DrinkRecipe.class, dynamoDBScanExpression));
         } else if (filter == "DrinkCategory") {
-            dynamoDBScanExpression.withFilterExpression("drink_category = :criteria")
+            //dynamoDBScanExpression.withFilterExpression("drink_category = :criteria")
+            //       .withExpressionAttributeValues(valueMap);
+            dynamoDBQueryExpression.withIndexName("DrinkCategoryIndex")
+                    .withConsistentRead(false)
+                    .withKeyConditionExpression("drink_category = :criteria")
                     .withExpressionAttributeValues(valueMap);
-            recipeList.addAll(dynamoDBMapper.scan(DrinkRecipe.class, dynamoDBScanExpression));
+            recipeList.addAll(dynamoDBMapper.query(DrinkRecipe.class, dynamoDBQueryExpression));
         } else if (filter == "DrinkItem") {
-            dynamoDBScanExpression.withFilterExpression("drink_recipe = :criteria")
+            //dynamoDBScanExpression.withFilterExpression("drink_item = :criteria")
+            //        .withExpressionAttributeValues(valueMap);
+            dynamoDBQueryExpression.withIndexName("DrinkItemIndex")
+                    .withConsistentRead(false)
+                    .withKeyConditionExpression("drink_item = :criteria")
                     .withExpressionAttributeValues(valueMap);
-            recipeList.addAll(dynamoDBMapper.scan(DrinkRecipe.class, dynamoDBScanExpression));
+            recipeList.addAll(dynamoDBMapper.query(DrinkRecipe.class, dynamoDBQueryExpression));
+            //recipeList.addAll(dynamoDBMapper.scan(DrinkRecipe.class, dynamoDBScanExpression));
         }
 
         return recipeList;
