@@ -1,4 +1,4 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import TheCookBookClient from '../api/theCookBookClient';
 import Header from '../components/header_old';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
@@ -9,9 +9,9 @@ import DataStore from '../util/DataStore';
 class CreatePlaylist extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewPlaylist'], this);
+        this.bindClassMethods(['mount', 'submit', 'redirectToViewDrinkRecipe'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToViewPlaylist);
+        this.dataStore.addChangeListener(this.redirectToViewDrinkRecipe);
         this.header = new Header(this.dataStore);
     }
 
@@ -23,7 +23,7 @@ class CreatePlaylist extends BindingClass {
 
         this.header.addHeaderToPage();
 
-        this.client = new MusicPlaylistClient();
+        this.client = new TheCookBookClient();
     }
 
     /**
@@ -41,31 +41,32 @@ class CreatePlaylist extends BindingClass {
         const origButtonText = createButton.innerText;
         createButton.innerText = 'Loading...';
 
-        const playlistName = document.getElementById('playlist-name').value;
-        const tagsText = document.getElementById('tags').value;
-
-        let tags;
-        if (tagsText.length < 1) {
-            tags = null;
-        } else {
-            tags = tagsText.split(/\s*,\s*/);
-        }
-
-        const playlist = await this.client.createPlaylist(playlistName, tags, (error) => {
+        const creator = document.getElementById('creator').value;
+        const recipeTitle = document.getElementById('recipeTitle').value;
+        const ingredients = document.getElementById('ingredients').value;
+        const instructionSteps = document.getElementById('instructionSteps').value;
+        const description = document.getElementById('description').value;
+        const descriptionTags = document.getElementById('descriptionTags').value;
+        const drinkCategory = document.getElementById('drinkCategory').value;
+        const drinkItem = document.getElementById('drinkItem').value;
+        const allergies = document.getElementById('allergies').value;
+        const ratings = null;
+        
+        const drinkRecipe = await this.client.createDrinkRecipe(creator, recipeTitle, ingredients, instructionSteps, description, descriptionTags, drinkCategory, drinkItem, allergies, ratings, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
-        this.dataStore.set('playlist', playlist);
+        this.dataStore.set('drinkRecipes', drinkRecipe);
     }
 
     /**
      * When the playlist is updated in the datastore, redirect to the view playlist page.
      */
-    redirectToViewPlaylist() {
-        const playlist = this.dataStore.get('playlist');
+    redirectToViewDrinkRecipe() {
+        const playlist = this.dataStore.get('drinkRecipes');
         if (playlist != null) {
-            window.location.href = `/playlist.html?id=${playlist.id}`;
+            window.location.href = `/drinkRecipes.html?id=${drinkRecipe.creator}/title.html?id=${drinkRecipe.recipeTitle}`;
         }
     }
 }
@@ -74,8 +75,8 @@ class CreatePlaylist extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const createPlaylist = new CreatePlaylist();
-    createPlaylist.mount();
+    const createDrinkRecipe = new createDrinkRecipe();
+    createDrinkRecipe.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

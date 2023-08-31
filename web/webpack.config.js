@@ -23,6 +23,9 @@ module.exports = {
     usedExports: true
   },
   entry: {
+    getDrinkRecipes: path.resolve(__dirname, 'src', 'pages', 'getDrinkRecipes.js'),
+    createDrinkRecipe: path.resolve(__dirname, 'src', 'pages', 'createDrinkRecipe.js'),
+    viewDrinkRecipe: path.resolve(__dirname, 'src', 'pages', 'viewDrinkRecipe.js'),
     createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
     viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),

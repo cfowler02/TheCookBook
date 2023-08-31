@@ -11,13 +11,14 @@ defaultTasks 'clean', 'build'
 
 repositories {
     mavenCentral()
-    maven {
+    /*maven {
         url = uri("https://maven.pkg.github.com/NSS-Software-Engineering/shared-java")
         credentials {
             username = project.findProperty('GH_PACKAGE_REG_READ_USER') ?: System.getenv('GH_PACKAGE_REG_READ_USER')
             password = project.findProperty('GH_PACKAGE_REG_READ_PASS') ?: System.getenv('GH_PACKAGE_REG_READ_PASS')
         }
     }
+    */
 }
 
 dependencies {
